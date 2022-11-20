@@ -2632,7 +2632,7 @@ ORDER BY 1
 
 STATUS
 
-DELIMITER $
+DELIMITER $ /* VOCÊ PODE MUDAR O DELINITER COM ESSA FUNÇÃO */
 
 SELECT * FROM V_RELATORIO;
 
@@ -2669,7 +2669,7 @@ BEGIN
 END
 $
 
-/* CHAMANDO UMA PROCEDURE */
+/* CHAMANDO UMA PROCEDURE - CRIANDO PROCEDIMENTOS NO BANCO - blocos de programação armazenados - podem ser anônimos oi nominados*/
 
 
 CALL NOME_EMPRESA()$
@@ -2678,7 +2678,22 @@ DELIMITER ;
 
 CALL NOME_EMPRESA();
 
+/******************************************************** */
+
+
 /* PROCEDURES COM PARAMETROS */
+/* exemplo - toda vez que alguém entrar no sistema, que seja armazenado NO BANCO O NOME DA EMPRESA: */
+
+/* aqui precisa mudar o DELIMITR PARA QUE IGNORE O POTO E VÍRGULA EXISTENTE NO MEIO DA FUNÇÃO:  (CRIANDO UMA PROCEDURE: */
+
+        DELIMITER $
+        CREAT PROCEDURE ()
+        BEGIN   
+            QUALQUER PROGRAMAÇÃO; /*AQUI ESTÁ O MOTIVO DE MUDARO DELIMITER POIS A PROCEDURE TERIA ENCERRADO AQUI SE NÃO MUDASSE*/
+        END
+        $
+
+
 
 SELECT 10 + 10 AS CONTA;
 
