@@ -2646,31 +2646,23 @@ DELIMITER ;
 
 /* STORED PROCEDURES */
 
+
+
+
+/* exemplo - toda vez que alguém entrar no sistema, que seja armazenado NO BANCO O NOME DA EMPRESA: */
+
+/* CHAMANDO UMA PROCEDURE - CRIANDO PROCEDIMENTOS NO BANCO - blocos de programação armazenados - podem ser anônimos ou nominados*/
 SELECT 'MAFRA';
+/* aqui precisa mudar o DELIMITR PARA QUE IGNORE O POTO E VÍRGULA EXISTENTE NO MEIO DA FUNÇÃO:  (CRIANDO UMA PROCEDURE: */
+         DELIMITER $
+        CREAT PROCEDURE ()
+        BEGIN   
+            QUALQUER PROGRAMAÇÃO; /*AQUI ESTÁ O MOTIVO DE MUDARO DELIMITER POIS A PROCEDURE TERIA ENCERRADO AQUI SE NÃO MUDASSE*/
+        END
+        $
 
-DELIMITER $
-
-CREATE PROCEDURE NOME()
-BEGIN
-
-	QUALQUER PROGRAMACAO;
-
-END
-$
-
-
-DELIMITER $
-
-CREATE PROCEDURE NOME_EMPRESA()
-BEGIN
-	
-	SELECT 'UNIVERSIDADE DOS DADOS' AS EMPRESA;
-
-END
-$
-
-/* CHAMANDO UMA PROCEDURE - CRIANDO PROCEDIMENTOS NO BANCO - blocos de programação armazenados - podem ser anônimos oi nominados*/
-
+ 
+/* PROCEDURE COM PARÂMETROS */
 
 CALL NOME_EMPRESA()$
 
@@ -2678,48 +2670,33 @@ DELIMITER ;
 
 CALL NOME_EMPRESA();
 
-/******************************************************** */
-
-
-/* PROCEDURES COM PARAMETROS */
-/* exemplo - toda vez que alguém entrar no sistema, que seja armazenado NO BANCO O NOME DA EMPRESA: */
-
-/* aqui precisa mudar o DELIMITR PARA QUE IGNORE O POTO E VÍRGULA EXISTENTE NO MEIO DA FUNÇÃO:  (CRIANDO UMA PROCEDURE: */
+ /* AQUI A PROCEDURE PE FIXA (10 + 10) mas pode ser modificado isso */
+SELECT 10 + 10 AS CONTA;
 
         DELIMITER $
-        CREAT PROCEDURE ()
-        BEGIN   
-            QUALQUER PROGRAMAÇÃO; /*AQUI ESTÁ O MOTIVO DE MUDARO DELIMITER POIS A PROCEDURE TERIA ENCERRADO AQUI SE NÃO MUDASSE*/
+
+        CREATE PROCEDURE CONTA()
+        BEGIN
+            
+            SELECT 10 + 10 AS CONTA;
+
         END
         $
 
+        CALL CONTA();
 
-
-SELECT 10 + 10 AS CONTA;
-
-DELIMITER $
-
-CREATE PROCEDURE CONTA()
-BEGIN
-	
-	SELECT 10 + 10 AS CONTA;
-
-END
-$
-
-CALL CONTA();
-
+/* vamos apagar para mudar a PROCEDURE */
 DROP PROCEDURE CONTA;
 
-DELIMITER $
+    DELIMITER $
 
-CREATE PROCEDURE CONTA(NUMERO1 INT, NUMERO2 INT)
-BEGIN
-	
-	SELECT NUMERO1 + NUMERO2 AS CONTA;
+    CREATE PROCEDURE CONTA(NUMERO1 INT, NUMERO2 INT)
+    BEGIN
+        
+        SELECT NUMERO1 + NUMERO2 AS CONTA; /* ESSE É O bloco de programação */
 
-END
-$
+    END
+    $
 
 CALL CONTA(100,50)$
 CALL CONTA(345634,4354)$
@@ -2736,7 +2713,7 @@ CREATE TABLE ALUNOS(
 	NUMERO INT,
 	NOME VARCHAR(30)
 );
-
+ /* apagando todas as databases */
 DROP DATABASE COMERCIO;
 DROP DATABASE EXEMPLO;
 DROP DATABASE MAFRA;
@@ -2766,7 +2743,7 @@ SELECT * FROM CURSOS;
 DELIMITER #
 
 STATUS
-
+/* CRIANADO UMA PROCEDURE DE CADASTRO DE CURSO */
 CREATE PROCEDURE CAD_CURSO(P_NOME VARCHAR(30),
 						   P_HORAS INT(30),
 						   P_PRECO  FLOAT(10,2))
@@ -2779,6 +2756,7 @@ END
 
 DELIMITER ;
 
+/* INSERINDO CURSOS */ 
 CALL CAD_CURSO('BI SQL SERVER',35,3000.00);
 CALL CAD_CURSO('POWER BI',20,1000.00);
 CALL CAD_CURSO('TABLEAU',30,1200.00);
@@ -2793,12 +2771,7 @@ NAO TENHAM CELULAR */
 
 /*=======================================================================*/
 /*=======================================================================*/
-/*=======================================================================*/
-/*=======================================================================*/
-/*=======================================================================*/
-/* Versao 2019 - Continuaçao do curso - Obrigado por ficar comigo até aqui!*/
-/*=======================================================================*/
-/*=======================================================================*/
+
 /*=======================================================================*/
 /*=======================================================================*/
 /*=======================================================================*/
