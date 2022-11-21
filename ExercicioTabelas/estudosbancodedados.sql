@@ -2796,6 +2796,17 @@ INSERT INTO VENDEDORES VALUES(NULL,'IVONE','F',57789.78,44774.87,68665.90);
 INSERT INTO VENDEDORES VALUES(NULL,'JOAO','M',4785.78,66478.87,6887.90);
 INSERT INTO VENDEDORES VALUES(NULL,'CELIA','F',89667.78,57654.87,5755.90);
 
+
+
+/* ***********************************************
+*************************************************
+**************************************************
+
+MAX     MIN     AVG    SUM     
+
+/* ***********************************************
+*************************************************
+**************************************************
 /* MAX - TRAZ O VALOR MAXIMO DE UMA COLUNA */
 
 SELECT MAX(FEVEREIRO) AS MAIOR_FEV
@@ -2819,14 +2830,14 @@ SELECT MAX(JANEIRO) AS MAX_JAN,
 	   AVG(JANEIRO) AS MEDIA_JAN
 	   FROM VENDEDORES;
 	 
-/*TRUNCATE */
+/*TRUNCATE - função que serve para truncar uma função - aplica a quantidade de casas decimais ao número*/
 	 
 SELECT MAX(JANEIRO) AS MAX_JAN,
        MIN(JANEIRO) AS MIN_JAN,
 	   TRUNCATE(AVG(JANEIRO),2) AS MEDIA_JAN
 	   FROM VENDEDORES;
 
-/* A30 - AGREGANDO COM SUM() */
+/* A30 - AGREGANDO COM SUM() - soma os valores de uma coluna*/
 
 SELECT SUM(JANEIRO) AS TOTAL_JAN
 FROM VENDEDORES;
@@ -2836,14 +2847,21 @@ SELECT SUM(JANEIRO) AS TOTAL_JAN,
 	   SUM(MARCO) AS TOTAL_MAR
 FROM VENDEDORES;
 
-/* VENDAS POR SEXO */
+/* VENDAS POR SEXO - não conundir com o COUNT - que conta o números de rgistyro seleiconado, enquanto a SUM soma os vlaores das colunas*/
 
 SELECT SEXO, SUM(MARCO) AS TOTAL_MARCO
 FROM VENDEDORES
 GROUP BY SEXO;
 
+/* ***********************************************
+*************************************************
+**************************************************
+/*
 /* A 31 - SUBQUERIES
-
+/* ***********************************************
+*************************************************
+**************************************************
+/*
 VENDEDOR QUE VENDEU MENOS EM MARCO
 E O SEU NOME 
 
@@ -2851,13 +2869,8 @@ NOME E O VALOR QUE VENDEU MAIS EM MARCO
 
 QUEM VENDEU MAIS QUE O VALOR MEDIO DE FEV
 */
-
-SELECT NOME, MIN(MARCO) AS MIN_MARCO
-FROM VENDEDORES;
-
-SELECT * FROM VENDEDORES;
-
-SELECT MIN(MARCO) FROM VENDEDORES;
+ /* aqui faz um uma Query com uma subquerry (innerquerry)
+ */
 
 SELECT NOME, MARCO FROM VENDEDORES
 WHERE MARCO = (SELECT MIN(MARCO) FROM VENDEDORES);
@@ -2876,8 +2889,15 @@ SELECT AVG(FEVEREIRO) FROM VENDEDORES;
 SELECT NOME, FEVEREIRO FROM VENDEDORES
 WHERE FEVEREIRO < (SELECT AVG(FEVEREIRO) FROM VENDEDORES);
 
+/* ***********************************************
+*************************************************
+**************************************************
+/*
 /* A32 - OPERACOES EM LINHA */
-
+/* ***********************************************
+*************************************************
+**************************************************
+/*
 SELECT * FROM VENDEDORES;
 
 SELECT NOME,
