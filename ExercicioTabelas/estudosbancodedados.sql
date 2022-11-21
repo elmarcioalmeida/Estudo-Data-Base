@@ -2897,7 +2897,7 @@ WHERE FEVEREIRO < (SELECT AVG(FEVEREIRO) FROM VENDEDORES);
 /* ***********************************************
 *************************************************
 **************************************************
-/*
+*/
 SELECT * FROM VENDEDORES;
 
 SELECT NOME,
@@ -2918,22 +2918,30 @@ SELECT NOME,
 	   (JANEIRO+FEVEREIRO+MARCO) * .25 AS "DESCONTO",
 	   TRUNCATE((JANEIRO+FEVEREIRO+MARCO)/3,2) AS "MEDIA"
 	   FROM VENDEDORES;
-	   
+
+
+/* ***********************************************
+*************************************************
+**************************************************
+/*
+
 /* A33 - ALTERANDO TABELAS */
 
+/* ***********************************************
+*************************************************
+**************************************************
+*/
 CREATE TABLE TABELA(
 	COLUNA1 VARCHAR(30),
 	COLUNA2 VARCHAR(30),
 	COLUNA3 VARCHAR(30)
 );
 
-CREATE TABLE TABELA(
-	COLUNA1 INT PRIMARY KEY AUTO_INCREMENT
-);
-
---ADICIONANDO UMA PK
+--ADICIONANDO UMA PK - primary key - usar ALTER TABLE
 ALTER TABLE TABELA 
 ADD PRIMARY KEY (COLUNA1);
+
+-- para verificar se houve mudança dar comando DESC para descrever a tabela
 
 --ADICIONANDO COLUNA SEM POSICAO. ULTIMA POSICAO
 ALTER TABLE TABELA 
@@ -2945,7 +2953,7 @@ ADD COLUNA100 INT;
 --ADICIONANDO UMA COLUNA COM POSICAO
 ALTER TABLE TABELA 
 ADD COLUMN COLUNA4 VARCHAR(30) NOT NULL UNIQUE
-AFTER COLUNA3;
+AFTER COLUNA3; -- está escolhendo onde a coluna ficará
 
 --MODIFICANDO O TIPO DE UM CAMPO
 ALTER TABLE TABELA
